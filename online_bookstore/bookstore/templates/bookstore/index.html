@@ -1,0 +1,89 @@
+{% extends "bookstore/layout.html" %}
+
+
+
+{% block title %}catalog {% endblock %}
+
+{% block body %}
+
+
+{% if messages %}
+{% for message in messages %}
+        <div class="alert  alert-dismissible fade show {% if message.tags %}alert-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}danger{% else %}{{ message.tags }}{% endif %}{% endif %} center-block" role="alert">
+            <p class="text-center">
+            <strong>{{ message }}</strong>
+            </p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+{% endfor %}
+{% endif %}
+
+
+
+<form method="GET" class="form-inline search-form">
+  <h2 class="find-books">Find Books:</h2>
+  <label class="sr-only" for="inlineFormInputName2">Search Box</label>
+  <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="query" placeholder="Search by title, author">
+
+  <label class="sr-only" for="inlineFormInputGroupUsername2">Min Price</label>
+    <input type="number" name="min_price" placeholder="Minimum price" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" >
+
+    <select name="genre" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2">
+      <option selected value="">Select Genre</option>
+      <option value="Fiction">Fiction</option>
+      <option value="Non-Fiction">Non-Fiction</option>
+      <option value="Horror">Horror</option>
+      <option value="Romance">Romance</option>
+      <option value="Sci-fi">Sci-fi</option>
+      <option value="Mystery">Mystery</option>
+      <option value="Thriller">Thriller</option>
+      <option value="Comedy">Comedy</option>
+      <option value="other">other</option>
+    </select>
+  <label class="sr-only" for="inlineFormInputGroupUsername2">Published Before</label>
+  <input type="date" name="max_date" placeholder="Published Before" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" >
+  <button type="submit" class="btn btn-primary mb-2" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2">Search</button>
+</form>
+<div class="flex">
+    {% for book in books %}
+    <div class="card" style="border-radius: 10px;">
+        <img src="{{book.url}}"  class="card-img-top card-img " style="border-radius: 20px;" alt="{{book.title}}">
+        <div class="card-body">
+          <h3 class="card-title">{{book.title|title}}</h3>
+          <p class="card-text">Price: <strong>Rs{{book.price}} </strong></p>
+        </div>
+        <ul class="list-group list-group-flush"> 
+          <li class="list-group-item" >{{book.description}}.</li>
+          
+        </ul>
+        <ul class="list-group list-group-flush"> 
+            <li class="list-group-item" > Author : <strong>{{book.author}}.</strong></li>
+            
+          </ul>
+          <ul class="list-group list-group-flush"> 
+            <li class="list-group-item" > Ratings : <strong>{{book.rating}}/10</strong></li>
+            
+          </ul>
+        <div class="card-body" style="border-top:1px solid dashed;" >
+          <p style="border: 0;">Published on <strong>{{book.publication_date|date}}</strong></p>
+          {% if user.is_authenticated %}
+          <form action="{% url 'update_cart' book.id %}" method="POST" class="bid_form">
+            {% csrf_token %}
+            {% if user in book.is_in_cart.all %}
+            <input type="submit"  class="btn btn-success w-100 " value="Remove from Cart">
+            {% else %}
+            <input type="submit"  class="btn btn-primary w-100 " value="Add to Cart">
+            {% endif %}  
+        </form> 
+        {% endif %}
+        </div>
+      </div>
+    {% empty %}
+    <p class="empty"> Books not Availiable, please wait for admin to add books</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
+

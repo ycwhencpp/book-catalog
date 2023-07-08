@@ -1,0 +1,268 @@
+body {
+    padding: 10px;
+    font-family: 'Poppins', sans-serif !important;
+    scroll-behavior: smooth !important;
+
+}
+.card-img{
+    width:250px;
+    height:350px;
+    object-fit: cover;
+    
+    transition: 0.5s ease;
+    transform: scale(0.9);
+}
+.card-img:hover{
+    transform: scale(0.85);
+}
+.heading{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+}
+.flex{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 0 80px;
+    white-space: wrap;
+}
+.card{
+    margin-bottom: 70px;
+    margin-right:auto;
+    box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.1);
+    width: 24em;
+     height:44em;
+      
+     border: none;
+}
+form{
+    font-family: 'Poppins', sans-serif;
+    
+}
+label{
+    font-size: 16px;
+    font-weight: 500;
+}
+.img-listing{
+    height:450px;
+    width:600px;
+    object-fit: cover;
+    border-radius:20px;
+    transition: all 0.5s ease;
+}
+.img-listing:hover{
+    transform: scale(0.95);
+    
+}
+/* .submit_bid{
+    position: relative;
+}
+.close_bid{
+    position: absolute;
+    top:20px;
+    left:50px;
+} */
+.bxs-heart,.bx-heart{
+ font-size:35px;
+}
+button{
+   display: inline-block;
+   font-size: 40px;
+}
+.round-button{
+    border-radius: 50%;
+    border:none;
+    box-shadow: 0;
+    background: #fff;
+}
+.bxs-heart{
+    color:#ff0000;
+
+}
+.closed{
+    filter:grayscale(1);
+    position:relative;
+    
+}
+.img-closed::after{
+    content:"";
+    background: url('https://www.freeiconspng.com/thumbs/sold-out-png/sold-out-png-3.png');
+    position:absolute;
+
+    margin-top:62px;
+    left:13%;
+    height:100%;
+    width:30%;
+    object-fit: contain;
+    background-repeat: no-repeat;
+    background-size: 50%;
+
+}
+nav{
+     background-color: #e3f2fd !important;
+     height:auto !important;
+}
+.navbar_logo{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4px;
+}
+.bxs-shopping-bag-alt{
+margin-left: 5px;
+
+padding: 4px 0;
+font-size:22px;
+color:#000000;
+}
+ .nav-link{
+    color:#000000 !important;
+    font-weight:400;
+    text-align: center;
+}
+.navbar-nav li a{
+    margin-left:20px;
+    text-align: center;
+}
+
+.nav-link:hover{
+    color:rgb(128, 112, 112) !important;
+    
+}
+.list-group-item{
+    overflow:hidden;
+    white-space: nowrap;
+  text-overflow:ellipsis;
+}
+nav h4 a:hover i,nav h4:hover a {
+    color:rgb(128, 112, 112) !important;
+}
+.info{
+
+
+/* border: 4px solid black; */
+max-width: 45ch;
+max-height: 40ch;
+
+}
+.description{
+    word-wrap: break-word !important;
+    overflow-x: hidden;
+white-space:wrap;
+text-overflow: ellipsis;
+/* border: 4px solid red; */
+
+
+}
+.card-title{
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    
+}
+.watchlist-title{
+    width:16ch;
+}
+.navbar h4 a{
+text-decoration: none ;
+color:#000000;
+}
+@media screen and (max-width:1199px) {
+    
+    
+    .listing_container{
+        
+        /* align-items: flex-start; */
+        justify-content: space-between;
+    }
+    .listing_flex_container {
+        display: flex!important;
+        flex-direction: column !important;
+        
+    }
+    .listing_description{
+        display:flex !important;
+        flex-direction: column !important;
+    }
+    .img-listing{
+        object-fit: cover;   
+    }
+    .img-listing-div{
+        align-self: center;
+        width:750px;
+        height:500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    /* img-closed::after{
+        width:40%;
+        background-size: 60%;
+        margin-top: 80px;
+        left:20%;
+    } */
+    .info{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        max-width:100%;
+        height:auto;
+        margin-top: 20px;
+    }
+    .description{
+        margin-top: 5px;
+    }
+
+    .title{
+        position:relative
+    }
+    .wishlist_button{
+        position: absolute;
+        right:18%;
+        margin-top: 20px;
+    }
+    
+    /* .details,hr,.d-flex h5,hr{
+
+        margin-left: -15% !important;
+    } */
+    .comment_form{
+        display:flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    /* .bid_count,.comment_form,.bid_form,.comment,.comment_container{
+        margin-left: -5% !important;
+
+    } */
+    .comment,.comment_form{
+        margin-left:7% !important;
+    }
+    .comment_container{
+        margin-left:3.5% !important;
+    }
+    #id_amount{
+        width:100%;
+        position: relative;
+    }
+    #basic-addon1{
+        position:absolute;
+        bottom:0%;
+        left:-20px;
+    }
+}
+.search-form{
+    margin-left: 80px !important;
+    margin-bottom: 40px !important;
+    justify-content: center !important;
+}
+.find-books{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}

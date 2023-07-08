@@ -1,0 +1,65 @@
+{% extends "bookstore/layout.html" %}
+
+{% block title %}cart {% endblock %}
+
+{% block body %}
+{% if messages %}
+{% for message in messages %}
+        <div class="alert  alert-dismissible fade show {% if message.tags %}alert-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}danger{% else %}{{ message.tags }}{% endif %}{% endif %} center-block" role="alert">
+            <p class="text-center">
+            <strong>{{ message }}</strong>
+            </p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+{% endfor %}
+{% endif %}
+    <h2 class="heading">Cart</h2>
+
+    <br>
+
+<div class="flex">
+    {% for book in cart %}
+        <div class="card" style="border-radius: 10px;" >
+
+                <img src="{{book.url}}"  class="card-img-top card-img  " style="border-radius: 20px;" alt="{{book.title}}">
+            
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h3 class="card-title watchlist-title">{{book.title|title}}</h3>
+                            <p class="card-text">Price: <strong>Rs{{book.price}} </strong></p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            <ul class="list-group list-group-flush"> 
+                <li class="list-group-item" >{{book.description}}.</li>
+            
+            </ul>
+            <ul class="list-group list-group-flush"> 
+                <li class="list-group-item" > Author : <strong>{{book.author}}.</strong></li>
+                
+              </ul>
+              <ul class="list-group list-group-flush"> 
+                <li class="list-group-item" > Ratings : <strong>{{book.rating}}/10</strong></li>
+                
+              </ul>
+            <div class="card-body" style="border-top:1px solid dashed;" >
+                <p style="border: 0;">Published on <strong>{{book.publication_date|date}}</strong> </p>
+                <form action="{% url 'remove_cart' book.id %}" method="POST" >
+                    {% csrf_token %}
+                    <input type="submit"  class="btn btn-success w-100" value="Remove from Cart">
+                </form>
+            </div>
+
+        </div>
+    {% empty %}
+    <p class="empty"> Nothing in Cart Yet.Try adding some <a href="{% url 'index' %}">View catalog</a></p>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
